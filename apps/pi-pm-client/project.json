@@ -1,0 +1,58 @@
+{
+  "name": "pi-pm-client",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/pi-pm-client/src",
+  "projectType": "application",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "platform": "node",
+        "outputPath": "dist/apps/pi-pm-client",
+        "format": ["cjs"],
+        "bundle": false,
+        "main": "apps/pi-pm-client/src/main.ts",
+        "tsConfig": "apps/pi-pm-client/tsconfig.app.json",
+        "assets": ["apps/pi-pm-client/src/assets"],
+        "generatePackageJson": true,
+        "esbuildOptions": {
+          "sourcemap": true,
+          "outExtension": {
+            ".js": ".js"
+          }
+        }
+      },
+      "configurations": {
+        "development": {},
+        "production": {
+          "esbuildOptions": {
+            "sourcemap": false,
+            "outExtension": {
+              ".js": ".js"
+            }
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "dependsOn": ["build"],
+      "options": {
+        "buildTarget": "pi-pm-client:build",
+        "runBuildTargetDependencies": false
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "pi-pm-client:build:development"
+        },
+        "production": {
+          "buildTarget": "pi-pm-client:build:production"
+        }
+      }
+    }
+  }
+}
