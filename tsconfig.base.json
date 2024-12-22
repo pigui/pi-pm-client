@@ -14,7 +14,16 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@web/auth": ["libs/web/auth/src/index.ts"],
+      "@web/master-web/core": ["libs/web/master-web/web/src/index.ts"],
+      "@web/shared/util/api": ["libs/shared/util/api/src/index.ts"],
+      "@web/shared/util/environment": [
+        "libs/shared/util/environment/src/index.ts"
+      ],
+      "@web/shared/util/loaders": ["libs/shared/util/loaders/src/index.ts"],
+      "@web/ui/full-spinner": ["libs/shared/ui/full-spinner/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,0 +1,77 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="m-6">
+    <p-ifta-label>
+      <input
+        pInputText
+        id="email"
+        type="email"
+        class="w-full"
+        formControlName="firstName"
+      />
+      <label for="email">FirstName</label>
+    </p-ifta-label>
+  </div>
+  <div class="m-6">
+    <p-ifta-label>
+      <input
+        pInputText
+        id="email"
+        type="email"
+        class="w-full"
+        formControlName="lastName"
+      />
+      <label for="email">LastName</label>
+    </p-ifta-label>
+  </div>
+  <div class="m-6">
+    <p-ifta-label>
+      <input
+        pInputText
+        id="email"
+        type="email"
+        class="w-full"
+        formControlName="email"
+      />
+      <label for="email">Email</label>
+    </p-ifta-label>
+  </div>
+  <div class="m-6">
+    <p-ifta-label>
+      <input
+        pInputText
+        id="password"
+        type="password"
+        class="w-full"
+        formControlName="password"
+      />
+      <label for="password">Password</label>
+    </p-ifta-label>
+  </div>
+  <div class="m-6">
+    <button
+      pButton
+      type="submit"
+      variant="outlined"
+      class="w-full"
+      size="large"
+      [loading]="isLoading()"
+      [disabled]="isLoading()"
+      [severity]="loggedSuccess()"
+    >
+      Register
+    </button>
+  </div>
+  <div class="m-6">
+    <button
+      pButton
+      type="submit"
+      variant="outlined"
+      class="w-full"
+      size="large"
+      [severity]="'secondary'"
+      (click)="goLogin()"
+    >
+      Login
+    </button>
+  </div>
+</form>
