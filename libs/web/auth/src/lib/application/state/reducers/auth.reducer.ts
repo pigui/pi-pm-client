@@ -3,9 +3,9 @@ import { createFeature, createReducer, on } from '@ngrx/store';
 import { AuthActions } from '../actions/auth.actions';
 
 interface State {
-  user: User | null;
-  accessToken: string | null;
-  refreshToken: string | null;
+  user: User;
+  accessToken: string;
+  refreshToken: string;
   isLoading: boolean;
 }
 
@@ -21,13 +21,7 @@ export const authFeature = createFeature({
   reducer: createReducer(
     initialState,
     on(AuthActions.loginWithPassword, (state) => {
-      return {
-        ...state,
-        user: null,
-        accessToken: null,
-        refreshToken: null,
-        isLoading: true,
-      };
+      return { ...state, ...initialState, isLoading: true };
     }),
     on(AuthActions.loginWithPasswordSuccess, (state, action) => {
       const { payload } = action;
@@ -42,18 +36,14 @@ export const authFeature = createFeature({
     on(AuthActions.loginWithPasswordFailure, (state) => {
       return {
         ...state,
-        user: null,
-        accessToken: null,
-        refreshToken: null,
+        ...initialState,
         isLoading: false,
       };
     }),
     on(AuthActions.registerWithPassword, (state) => {
       return {
         ...state,
-        user: null,
-        accessToken: null,
-        refreshToken: null,
+        ...initialState,
         isLoading: true,
       };
     }),
@@ -70,11 +60,31 @@ export const authFeature = createFeature({
     on(AuthActions.registerWithPasswordFailure, (state) => {
       return {
         ...state,
-        user: null,
-        accessToken: null,
-        refreshToken: null,
+        ...initialState,
         isLoading: false,
       };
+    }),
+    on(AuthActions.logout, (state) => {
+      return { ...state, ...initialState, isLoading: true };
+    }),
+    on(AuthActions.logoutSuccess, (state) => {
+      return { ...state, ...initialState };
+    }),
+    on(AuthActions.checkLogged, (state) => {
+      return { ...state, ...initialState, isLoading: true };
+    }),
+    on(AuthActions.checkLoggedSuccess, (state, action) => {
+      const { payload } = action;
+      return {
+        ...state,
+        ...initialState,
+        accessToken: payload.accessToken,
+        refreshToken: payload.refreshToken,
+        isLoading: false,
+      };
+    }),
+    on(AuthActions.checkLoggedFailure, (state) => {
+      return { ...state, ...initialState };
     })
   ),
 });

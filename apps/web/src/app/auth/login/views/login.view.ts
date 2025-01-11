@@ -3,13 +3,15 @@ import {
   Component,
   computed,
   inject,
+  Signal,
 } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
-import { AuthFacade } from '@web/auth';
+import { AuthFacade, User } from '@web/auth';
 import { Router } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -20,6 +22,7 @@ import { Router } from '@angular/router';
     IftaLabelModule,
     InputTextModule,
     ButtonModule,
+    TranslatePipe,
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -27,8 +30,8 @@ export default class LoginView {
   private readonly authFacade = inject(AuthFacade);
   private readonly fb = inject(FormBuilder);
   private readonly router = inject(Router);
-  isLoading = this.authFacade.isLoading;
-  user = this.authFacade.user;
+  isLoading: Signal<boolean> = this.authFacade.isLoading;
+  user: Signal<User | null> = this.authFacade.user;
 
   loggedSuccess = computed(() => (this.user() ? 'success' : 'primary'));
 

@@ -14,7 +14,13 @@ import {
   provideClientHydration,
   withEventReplay,
 } from '@angular/platform-browser';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import {
+  HttpClient,
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+  withInterceptorsFromDi,
+} from '@angular/common/http';
 import { CoreModule } from '@web/master-web/core';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { providePrimeNG } from 'primeng/config';
@@ -22,7 +28,14 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import MyPreset from './theme';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { provideLoaders } from '@web/shared/util/loaders';
+import { accessTokenInterceptor, provideAuth } from '@web/auth';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { provideStorage } from '@web/shared/util/storage';
+const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (
+  http: HttpClient
+) => new TranslateHttpLoader(http, './i18n/', '.json');
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -34,12 +47,24 @@ export const appConfig: ApplicationConfig = {
     }),
     provideClientHydration(withEventReplay()),
     provideZoneChangeDetection({ eventCoalescing: true }),
+    provideTranslateService({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
     provideRouter(
       appRoutes,
       withViewTransitions(),
       withComponentInputBinding()
     ),
-    provideHttpClient(withFetch()),
+    provideHttpClient(
+      withFetch(),
+      withInterceptorsFromDi(),
+      withInterceptors([accessTokenInterceptor])
+    ),
     importProvidersFrom(
       CoreModule,
       StoreModule.forRoot({}),
@@ -54,5 +79,7 @@ export const appConfig: ApplicationConfig = {
       connectInZone: true,
     }),
     provideLoaders(),
+    provideAuth(),
+    provideStorage(),
   ],
 };

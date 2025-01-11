@@ -20,9 +20,11 @@ export const loadersFeature = createFeature({
       };
     }),
     on(LoadersActions.stopAction, (state, action) => {
-      const onGoingAction = state.onGoingAction.filter(
-        (currentActions) => currentActions !== action.payload
-      );
+      const onGoingAction = [
+        ...state.onGoingAction.filter(
+          (currentActions) => currentActions !== action.payload
+        ),
+      ];
       return { ...state, onGoingAction };
     })
   ),

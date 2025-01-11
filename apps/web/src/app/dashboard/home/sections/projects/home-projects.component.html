@@ -1,0 +1,11 @@
+<div class="flex items-center justify-center">
+  @let data = projects(); @if(data.length){
+  <div class="columns-2 sm:columns-1">
+    @for (item of data; track item.id) {
+    <app-home-project-card [project]="item" />
+    }
+  </div>
+  }@else {
+  <app-home-projects-empty (createProject)="createProject.emit()" />
+  }
+</div>

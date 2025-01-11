@@ -1,0 +1,36 @@
+{
+    "auth": {
+        "form": {
+            "firstName": {
+                "label": "First Name"
+            },
+            "lastName": {
+                "label": "Last Name"
+            },
+            "email": {
+                "label": "Email"
+            },
+            "password": {
+                "label": "Password"
+            }
+        },
+        "buttons": {
+            "register": {
+                "label": "Register"
+            },
+            "login": {
+                "label": "Login"
+            }
+        }
+    },
+    "home": {},
+    "dashboard": {
+        "navbar": {
+            "buttons": {
+                "logout": {
+                    "label": "logout"
+                }
+            }
+        }
+    }
+}

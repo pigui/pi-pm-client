@@ -14,10 +14,10 @@ import { AuthActions } from './state/actions/auth.actions';
 export class AuthFacade {
   private readonly store = inject(Store);
 
-  readonly user: Signal<User | null> = this.store.selectSignal(selectUser);
-  readonly accessToken: Signal<string | null> =
+  readonly user: Signal<User> = this.store.selectSignal(selectUser);
+  readonly accessToken: Signal<string> =
     this.store.selectSignal(selectAccessToken);
-  readonly refreshToken: Signal<string | null> =
+  readonly refreshToken: Signal<string> =
     this.store.selectSignal(selectRefreshToken);
 
   readonly isLoading: Signal<boolean> =
@@ -42,5 +42,13 @@ export class AuthFacade {
         payload: { email, password, firstName, lastName },
       })
     );
+  }
+
+  checkLogged(): void {
+    this.store.dispatch(AuthActions.checkLogged());
+  }
+
+  doLogout(): void {
+    this.store.dispatch(AuthActions.logout());
   }
 }

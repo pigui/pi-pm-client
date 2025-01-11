@@ -4,6 +4,11 @@ import { Auth } from '../../../domain/auth';
 export const AuthActions = createActionGroup({
   source: 'Auth',
   events: {
+    checkLogged: emptyProps(),
+    checkLoggedSuccess: props<{
+      payload: { accessToken: string; refreshToken: string };
+    }>(),
+    checkLoggedFailure: emptyProps(),
     loginWithPassword: props<{
       payload: { email: string; password: string };
     }>(),
@@ -19,5 +24,7 @@ export const AuthActions = createActionGroup({
     }>(),
     registerWithPasswordSuccess: props<{ payload: Auth }>(),
     registerWithPasswordFailure: emptyProps(),
+    logout: emptyProps(),
+    logoutSuccess: emptyProps(),
   },
 });

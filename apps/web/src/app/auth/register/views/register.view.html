@@ -3,24 +3,26 @@
     <p-ifta-label>
       <input
         pInputText
-        id="email"
-        type="email"
+        id="firstName"
+        type="text"
         class="w-full"
         formControlName="firstName"
       />
-      <label for="email">FirstName</label>
+      <label for="firstName"
+        >{{ 'auth.form.firstName.label' | translate }}</label
+      >
     </p-ifta-label>
   </div>
   <div class="m-6">
     <p-ifta-label>
       <input
         pInputText
-        id="email"
-        type="email"
+        id="lastName"
+        type="text"
         class="w-full"
         formControlName="lastName"
       />
-      <label for="email">LastName</label>
+      <label for="lastName">{{ 'auth.form.lastName.label' | translate }}</label>
     </p-ifta-label>
   </div>
   <div class="m-6">
@@ -32,7 +34,7 @@
         class="w-full"
         formControlName="email"
       />
-      <label for="email">Email</label>
+      <label for="email">{{ 'auth.form.email.label' | translate }}</label>
     </p-ifta-label>
   </div>
   <div class="m-6">
@@ -44,7 +46,7 @@
         class="w-full"
         formControlName="password"
       />
-      <label for="password">Password</label>
+      <label for="password">{{ 'auth.form.password.label' | translate }}</label>
     </p-ifta-label>
   </div>
   <div class="m-6">
@@ -58,7 +60,7 @@
       [disabled]="isLoading()"
       [severity]="loggedSuccess()"
     >
-      Register
+      {{ 'auth.buttons.register.label' | translate}}
     </button>
   </div>
   <div class="m-6">
@@ -71,7 +73,7 @@
       [severity]="'secondary'"
       (click)="goLogin()"
     >
-      Login
+      {{ 'auth.buttons.login.label' | translate}}
     </button>
   </div>
 </form>

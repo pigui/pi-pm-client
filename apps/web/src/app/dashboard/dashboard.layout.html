@@ -1,1 +1,11 @@
-<router-outlet />
+<app-dashboard-shell>
+  <ng-template #headerTemplate>
+    <app-dashboard-navbar [user]="user()" (logout)="doLogout()" />
+  </ng-template>
+  <ng-template #menuTemplate>
+    <app-dashboard-menu />
+  </ng-template>
+  <ng-template #contentTemplate>
+    <div class="p-4"><router-outlet /></div>
+  </ng-template>
+</app-dashboard-shell>

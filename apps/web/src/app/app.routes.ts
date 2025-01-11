@@ -1,15 +1,18 @@
+import { inject } from '@angular/core';
 import { Route } from '@angular/router';
-import { provideAuth } from '@web/auth';
+import { AuthFacade } from '@web/auth';
 
 export const appRoutes: Route[] = [
   {
     path: '',
-    redirectTo: 'auth',
+    redirectTo: () => {
+      const authFacade = inject(AuthFacade);
+      return authFacade.isLogged ? 'home' : 'auth';
+    },
     pathMatch: 'full',
   },
   {
     path: '',
-    providers: [provideAuth()],
     children: [
       {
         path: '',

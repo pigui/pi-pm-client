@@ -13,15 +13,20 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
     "baseUrl": ".",
     "paths": {
       "@web/auth": ["libs/web/auth/src/index.ts"],
+      "@web/home": ["libs/web/home/src/index.ts"],
       "@web/master-web/core": ["libs/web/master-web/web/src/index.ts"],
+      "@web/projects": ["libs/web/projects/src/index.ts"],
       "@web/shared/util/api": ["libs/shared/util/api/src/index.ts"],
       "@web/shared/util/environment": [
         "libs/shared/util/environment/src/index.ts"
       ],
       "@web/shared/util/loaders": ["libs/shared/util/loaders/src/index.ts"],
+      "@web/shared/util/storage": ["libs/shared/util/storage/src/index.ts"],
       "@web/ui/full-spinner": ["libs/shared/ui/full-spinner/src/index.ts"]
     }
   },

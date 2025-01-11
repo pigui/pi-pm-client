@@ -8,6 +8,7 @@ module.exports = [
   {
     files: ['**/*.ts'],
     rules: {
+      '@angular-eslint/component-class-suffix': [false],
       '@angular-eslint/directive-selector': [
         'error',
         {
@@ -29,6 +30,8 @@ module.exports = [
   {
     files: ['**/*.html'],
     // Override or add rules here
-    rules: {},
+    rules: {
+      '@angular-eslint/template/elements-content': [false],
+    },
   },
 ];

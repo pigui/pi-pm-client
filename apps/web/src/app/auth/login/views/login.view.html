@@ -8,7 +8,7 @@
         class="w-full"
         formControlName="email"
       />
-      <label for="email">Email</label>
+      <label for="email">{{ 'auth.form.email.label' | translate }}</label>
     </p-ifta-label>
   </div>
   <div class="m-6">
@@ -20,7 +20,7 @@
         class="w-full"
         formControlName="password"
       />
-      <label for="password">Password</label>
+      <label for="password">{{ 'auth.form.password.label' | translate }}</label>
     </p-ifta-label>
   </div>
   <div class="m-6">
@@ -30,12 +30,11 @@
       variant="outlined"
       class="w-full"
       size="large"
+      [label]="'auth.buttons.login.label' | translate"
       [loading]="isLoading()"
       [disabled]="isLoading()"
       [severity]="loggedSuccess()"
-    >
-      Login
-    </button>
+    ></button>
   </div>
   <div class="m-6">
     <button
@@ -46,8 +45,7 @@
       size="large"
       [severity]="'secondary'"
       (click)="goRegister()"
-    >
-      Register
-    </button>
+      [label]="'auth.buttons.register.label' | translate"
+    ></button>
   </div>
 </form>

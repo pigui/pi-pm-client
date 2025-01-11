@@ -5,3 +5,4 @@
 export { AppService } from './services/app.service';
 export { UsersService } from './services/users.service';
 export { AuthService } from './services/auth.service';
+export { ProjectsService } from './services/projects.service';
